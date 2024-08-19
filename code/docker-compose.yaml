@@ -1,0 +1,17 @@
+# docker-compose.yml
+version: '3.3'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./dist:/var/www/html/
+      - ./deploy/nginx:/etc/nginx/conf.d
+    networks:
+      - guitar-network
+networks:
+  guitar-network:
+    driver: bridge
